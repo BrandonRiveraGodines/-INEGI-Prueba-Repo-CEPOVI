@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="entityDePruebasTable"
+        messagesPack="com.company.cubaforcepovidevelop.web.screens.entitydeprueba">
+    <data readOnly="true">
+        <collection id="entityDePruebasDc"
+                    class="com.company.cubaforcepovidevelop.entity.EntityDePrueba"
+                    view="_local">
+            <loader id="entityDePruebasDl">
+                <query>
+                    <![CDATA[select e from cubaforcepovidevelop_EntityDePrueba e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="entityDePruebasTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="entityDePruebasTable"
+                dataLoader="entityDePruebasDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="entityDePruebasTable"
+                    width="100%"
+                    dataContainer="entityDePruebasDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="fecha"/>
+                <column id="nombre"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="entityDePruebasTable.create"/>
+                <button id="editBtn" action="entityDePruebasTable.edit"/>
+                <button id="removeBtn" action="entityDePruebasTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
